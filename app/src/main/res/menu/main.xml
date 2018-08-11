@@ -45,4 +45,14 @@ limitations under the License.
         android:orderInCategory="100"
         app:showAsAction="never" />
 
+    <item android:id="@+id/open_job_schedular"
+        android:title="Job Schedular"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/open_accelerometer"
+        android:title="Accelerometer"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
 </menu>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.google.android.gms.fit.samples.stepcounter">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,10 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HistoryApiActivity"/>
-        <activity android:name=".HistorySessionApiActivity"/>
-        <activity android:name=".ActivityRecordApi"/>
-        <activity android:name=".ActivitySensorApi"/>
+        <activity android:name=".HistoryApiActivity" />
+        <activity android:name=".HistorySessionApiActivity" />
+        <activity android:name=".ActivityRecordApi" />
+        <activity android:name=".ActivitySensorApi" />
+        <activity android:name=".ActivityJobScheduler"/>
+        <activity android:name=".AccelerometerPlayActivity"/>
+
+        <service
+            android:name=".MyJobservice"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>

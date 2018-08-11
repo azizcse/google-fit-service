@@ -149,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, ActivityRecordApi.class));
         }else if(id == R.id.open_sensor_api){
             startActivity(new Intent(this, ActivitySensorApi.class));
+        }else if(id == R.id.open_job_schedular){
+            startActivity(new Intent(this, ActivityJobScheduler.class));
+        }else if(id == R.id.open_accelerometer){
+            startActivity(new Intent(this, AccelerometerPlayActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
