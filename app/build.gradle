@@ -27,4 +27,5 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${google_support_library}"
     implementation "com.android.support:design:${google_support_library}"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 }

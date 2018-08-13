@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, ActivityJobScheduler.class));
         }else if(id == R.id.open_accelerometer){
             startActivity(new Intent(this, AccelerometerPlayActivity.class));
+        }else if(id == R.id.open_jsob_dispaccher){
+            startActivity(new Intent(this, ActivityJobDispatcher.class));
         }
         return super.onOptionsItemSelected(item);
     }
