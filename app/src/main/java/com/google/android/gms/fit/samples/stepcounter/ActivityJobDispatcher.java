@@ -44,7 +44,7 @@ public class ActivityJobDispatcher extends AppCompatActivity{
                 .setService(MyJobDispatcherService.class)
                 .setTag(JOB_TAG)
                 .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(0, 20))
+                .setTrigger(Trigger.executionWindow(0, 60))
                 .setReplaceCurrent(false)
                 .setConstraints(Constraint.DEVICE_CHARGING)
                 .build();
