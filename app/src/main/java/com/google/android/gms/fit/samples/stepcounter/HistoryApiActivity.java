@@ -13,6 +13,7 @@ package com.google.android.gms.fit.samples.stepcounter;
  *  ****************************************************************************
  */
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -66,18 +67,22 @@ public class HistoryApiActivity extends AppCompatActivity {
         // This method sets up our custom logger, which will print all log messages to the device
         // screen, as well as to adb logcat.
         initializeLogging();
+        if(PermissionUtil.init(this).request(Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-        FitnessOptions fitnessOptions =
-                FitnessOptions.builder()
-                        .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_WRITE)
-                        .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_WRITE)
-                        .build();
-        if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
-            GoogleSignIn.requestPermissions(this, REQUEST_OAUTH_REQUEST_CODE,
-                    GoogleSignIn.getLastSignedInAccount(this),
-                    fitnessOptions);
-        } else {
-            insertAndReadData();
+            FitnessOptions fitnessOptions =
+                    FitnessOptions.builder()
+                            .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_WRITE)
+                            .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_WRITE)
+                            .addDataType(DataType.TYPE_DISTANCE_CUMULATIVE,FitnessOptions.ACCESS_WRITE )
+                            .addDataType(DataType.AGGREGATE_DISTANCE_DELTA,FitnessOptions.ACCESS_WRITE )
+                            .build();
+            if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
+                GoogleSignIn.requestPermissions(this, REQUEST_OAUTH_REQUEST_CODE,
+                        GoogleSignIn.getLastSignedInAccount(this),
+                        fitnessOptions);
+            } else {
+                insertAndReadData();
+            }
         }
     }
 
@@ -220,6 +225,7 @@ public class HistoryApiActivity extends AppCompatActivity {
                         // datapoints each consisting of a few steps and a timestamp.  The more likely
                         // scenario is wanting to see how many steps were walked per day, for 7 days.
                         .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
+                        .aggregate(DataType.TYPE_DISTANCE_DELTA, DataType.AGGREGATE_DISTANCE_DELTA)
                         // Analogous to a "Group By" in SQL, defines how data should be aggregated.
                         // bucketByTime allows for a time span, whereas bucketBySession would allow
                         // bucketing by "sessions", which would need to be defined in code.
